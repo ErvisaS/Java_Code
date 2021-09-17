@@ -1,0 +1,74 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+class Result {
+
+    /*
+     * Complete the 'dayOfProgrammer' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts INTEGER year as parameter.
+     */
+
+    public static String dayOfProgrammer(int year) {
+        int dd=0;
+        int m=9;
+        int y=year;
+  //julian 
+   if(y<1918 && y>1699){
+       if(y%4==0){
+           dd=256-244;
+          
+       }
+       else{
+           dd=256-243;
+       }
+   }
+   //1918
+  else if(y==1918){
+       dd=256-230;
+   }
+   else if(y>1918 && y<2701){
+     if(y%400==0 ||(y%4==0 && y%100!=0)){
+           dd=256-244;
+          
+       }
+       else{
+           dd=256-243;
+       }  
+   }
+   String date=Integer.toString(dd);
+   String d=".09.";
+   String yy=Integer.toString(y);
+   String date1=date+d+yy;
+System.out.println(dd+".0"+m+"."+y);
+return date1;
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int year = Integer.parseInt(bufferedReader.readLine().trim());
+
+        String result = Result.dayOfProgrammer(year);
+
+        bufferedWriter.write(result);
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
