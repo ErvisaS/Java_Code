@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      Map <String,Integer> phoneBook= new HashMap<String,Integer>();
+      int n=sc.nextInt();
+      for(long i=0;i<n;i++){
+          String name=sc.next();
+          int no= sc.nextInt();
+          phoneBook.put(name,no);
+      }
+      
+   while(sc.hasNext()){
+         String k=sc.next();
+         if(phoneBook.get(k)!=null){
+            System.out.println(k+"="+phoneBook.get(k)); 
+         }
+         else{
+              System.out.println("Not found");
+         }
+            }
+            sc.close();
+}}
