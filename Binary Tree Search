@@ -1,0 +1,79 @@
+import java.io.*;
+import java.util.*;
+
+class Node{
+    Node left, right;
+    int data;
+    
+    public Node(int d){
+        left = right = null;
+        data = d;
+    }
+}
+
+class bst{
+    Node root;
+    
+    public bst(){
+        root = null;
+    }
+    
+    public boolean isEmpty(){
+        return root == null;
+    }
+    
+    public void add(int n){
+        if(isEmpty()){
+            root = new Node(n);
+            return;
+        }
+        
+        Node cur = root;
+        Node target= null; 
+        
+        while(cur!=null){
+            target = cur;
+            if(n<=cur.data)
+                cur = cur.left;
+            else cur = cur.right;
+        }
+        
+        if(n<=target.data)
+            target.left = new Node(n);
+        else target.right = new Node(n);
+        
+        
+    }
+    
+    public int height(){
+        if(isEmpty())
+            return 0; 
+        else
+            return getHeight(root);
+    }
+    
+    public int getHeight(Node root){
+        if(root==null)
+            return -1;
+        return Math.max(getHeight(root.left),getHeight(root.right)) + 1;
+    }
+}
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+         Scanner in = new Scanner(System.in);
+        
+        int size = in.nextInt();
+        
+        bst b = new bst();
+        
+        while(size-->0){
+            b.add(in.nextInt());
+        }
+        
+        in.close();
+        
+        System.out.println(b.height());
+    }
+}
